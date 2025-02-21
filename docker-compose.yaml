@@ -1,0 +1,26 @@
+services:
+  auth-service:
+    build: .
+    container_name: auth_service
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/authdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - "8000:8080"
+  postgres:
+    image: 'postgres:latest'
+    container_name: 'postgres_db'
+    environment:
+      - 'POSTGRES_DB=authdb'
+      - 'POSTGRES_USER=root'
+      - 'POSTGRES_PASSWORD=password'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgres_data:/var/lib/postgresql/data'
+volumes:
+  postgres_data:

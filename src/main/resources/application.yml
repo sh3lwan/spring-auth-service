@@ -1,0 +1,15 @@
+spring:
+  security:
+    jwt:
+      secretKey: 'your-jwt-secret'
+      expirationTime: '360000'
+  datasource:
+    url: jdbc:postgresql://postgres:5432/authdb
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
